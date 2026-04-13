@@ -2,7 +2,8 @@
   "name": "@connect-four/shared",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
     "start": "pnpm --filter @connect-four/apps/server start"
   },
