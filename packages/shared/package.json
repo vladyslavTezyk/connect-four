@@ -1,0 +1,16 @@
+{
+  "name": "@connect-four/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "pnpm --filter @connect-four/apps/server start"
+  },
+  "keywords": [],
+  "author": "Vladyslav Tezyk",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.2",
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
