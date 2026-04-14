@@ -1,13 +1,12 @@
 import { GameBoard } from "@connect-four/shared";
 
 enum Cell {
-  Empty = 0,
   Player1 = 1,
   Player2 = 2,
 }
 
 const cellRepresentation = (cell: Cell) => {
-  if (cell === Cell.Player1) return "🔴";
+  if (cell === Cell.Player1) return "🟢";
   if (cell === Cell.Player2) return "🟡";
   return "⚫";
 };
