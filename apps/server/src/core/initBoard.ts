@@ -1,10 +1,13 @@
-import { GameBoard } from '@connect-four/shared';
+import type { GameBoard } from "@connect-four/shared";
 
 export function initBoard(): GameBoard {
-    return {
-        grid: Array(6).fill(null).map(() => Array(7).fill(0)),
-        currentRound: 1,
-        currentPlayer: 1,
-        win: null
-    };
+  const rows = 6;
+  const cols = 7;
+
+  return {
+    grid: Array.from({ length: rows }, () => Array(cols).fill(null)),
+    currentRound: 1,
+    currentPlayer: 1,
+    win: null,
+  };
 }
