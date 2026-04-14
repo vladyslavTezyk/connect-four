@@ -2,9 +2,9 @@
   "name": "@connect-four/server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/runConnectFour.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/runConnectFour.ts"
   },
   "keywords": [],
   "author": "Vladyslav Tezyk",
