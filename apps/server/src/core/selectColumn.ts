@@ -1,28 +1,29 @@
-import * as readline from "node:readline/promises";
-import { stdin as input, stdout as output } from "node:process";
-import { GameBoard } from "@connect-four/shared";
+import type { GameBoard } from "@connect-four/shared";
+import * as readline from "readline";
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 export async function selectColumn(gameBoard: GameBoard): Promise<number> {
-  const rl = readline.createInterface({ input, output });
-  const column = parseInt(
-    await rl.question(`Round ${gameBoard.currentRound} \n ${gameBoard.currentPlayer === 1 ? "Player 1" : "Player 2"}: 
-    What column would you like to place your token in? `)
-  );
-  const maxColumn = gameBoard.grid[0].length;
+  return new Promise((resolve) => {
+    rl.question(`Player ${gameBoard.currentPlayer}, select column (1-7): `, (answer) => {
+      const column = parseInt(answer, 10) -1; // Convert to 0-based index
 
-  // Check if the column is valid
-  if (column < 0 || column > maxColumn) {
-    console.log("Invalid column. Please choose a column between 1 and 7.");
-    return selectColumn(gameBoard);
-  }
+      if (isNaN(column) || column < 0 || column > 6) {
+        console.log("Invalid column. Try again.");
+        selectColumn(gameBoard).then(resolve);
+        return;
+      }
 
-  // Check if the column is full
-  if (gameBoard.grid[0][column - 1] !== 0) {
-    console.log("Column is full. Please choose a different column.");
-    return selectColumn(gameBoard);
-  }
+      if (gameBoard.grid[0][column] !== null) {
+        console.log("Column full. Try another.");
+        selectColumn(gameBoard).then(resolve);
+        return;
+      }
 
-  rl.close();
-
-  return column;
+      resolve(column);
+    });
+  });
 }
