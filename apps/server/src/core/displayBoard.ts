@@ -12,5 +12,11 @@ const cellRepresentation = (cell: Cell) => {
 };
 
 export function displayBoard(gameBoard: GameBoard) {
-  console.log(gameBoard.grid.map((row) => row.map(cellRepresentation).join(" ")).join("\n"));
+  const rowsAsEmojis = gameBoard.grid.map((row) => {
+    return row.map(cellRepresentation).join(" ");
+  });
+
+  const finalOutput = rowsAsEmojis.join("\n");
+
+  console.log(finalOutput);
 }
