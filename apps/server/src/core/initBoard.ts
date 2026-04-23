@@ -6,7 +6,7 @@ export function initBoard(): GameBoard {
 
   return {
     grid: Array.from({ length: rows }, () => Array(cols).fill(null)),
-    currentRound: 1,
+    currentRound: 0,
     currentPlayer: 1,
     win: null,
   };

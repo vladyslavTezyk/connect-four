@@ -16,7 +16,7 @@ async function runConnectFour() {
       console.log(`\nPlayer ${gameBoard.currentPlayer} chose column ${column + 1}`);
       placeToken(gameBoard, column);
 
-      if (gameBoard.currentRound >= 8) {
+      if (gameBoard.currentRound >= 7) {
         console.log("Checking for win ...");
         const result = checkWin({
           board: gameBoard.grid,
@@ -36,8 +36,7 @@ async function runConnectFour() {
     }
     displayBoard(gameBoard);
   } catch (error) {
-    console.error("An error occurred during the game:", error);
-    closeInterface();
+    console.error("Oops, something went wrong");
   } finally {
     closeInterface();
     console.log("\n Game over! \n");
