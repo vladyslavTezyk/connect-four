@@ -25,7 +25,12 @@ export async function selectColumn(gameBoard: GameBoard): Promise<number> {
     }
 
     return column;
-  } catch (error) {
+  } catch (error: any) {
+    const isInterfaceClose = error.code === 'ERR_USE_AFTER_CLOSE' || error.code === 'ABORT_ERR';
+    if (isInterfaceClose) {
+      console.log("\n See you later!")
+      process.exit(0);
+    }
     console.error("An error occured. Please try again.", error);
     return selectColumn(gameBoard);
   }
