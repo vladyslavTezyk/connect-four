@@ -7,8 +7,9 @@ import { checkWin } from "./core/checkWin";
 
 async function runConnectFour() {
   const gameBoard: GameBoard = initBoard();
-  
-  while (gameBoard.win === null) {
+  let gameOver = false;
+
+  while (gameBoard.win === null && !gameOver) {
     displayBoard(gameBoard);
     const column = await selectColumn(gameBoard);
     console.log(`Player ${gameBoard.currentPlayer} chose column ${column + 1}`);
@@ -23,18 +24,19 @@ async function runConnectFour() {
       });
 
       if (result.status === "win") {
-        console.log(`Player ${result.winner} wins!`);
-        console.log(`Winning line: ${result.line.map((p) => `(${p.row},${p.col})`).join(" -> ")}`);
+        displayBoard(gameBoard);
+        console.log(`\n 🏆 Player ${result.winner} wins! \n`);
         gameBoard.win = result.winner as number;
+        gameOver = true;
       } else if (result.status === "draw") {
-        console.log("It's a draw!");
-        gameBoard.win = null; // Game over, but no winner
+        console.log("\n It's a draw! \n");
+        gameOver = true;
       }
     }
   }
 
   displayBoard(gameBoard);
-  console.log("Game over!");
+  console.log("\n Game over! \n");
 }
 
 runConnectFour().catch(console.error);
