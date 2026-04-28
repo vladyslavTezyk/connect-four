@@ -26,8 +26,8 @@ export async function selectColumn(gameBoard: GameBoard): Promise<number> {
 
     return column;
   } catch (error: any) {
-    const isInterfaceClose = error.code === 'ERR_USE_AFTER_CLOSE' || error.code === 'ABORT_ERR';
-    if (isInterfaceClose) {
+    const isInterfaceClosed = error.code === 'ERR_USE_AFTER_CLOSE' || error.code === 'ABORT_ERR';
+    if (isInterfaceClosed) {
       console.log("\n See you later!")
       process.exit(0);
     }
